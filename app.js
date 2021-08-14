@@ -14,6 +14,6 @@ app.use('/participate/', participateRoute)
 app.use('/result/', resultRoute)
 
 
-mongoose.connect(`mongodb+srv://tahmid:${process.env.MONGO_PASSWORD}@cluster0.mv3ei.mongodb.net/quiz-taker`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }).then(() => {
+mongoose.connect(`mongodb+srv://tahmid:g8gYEKgu3plGKjmT@cluster0.mv3ei.mongodb.net/quiz-taker`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }).then(() => {
     app.listen(3000)
 })
