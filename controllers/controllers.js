@@ -44,7 +44,7 @@ module.exports.check_participant = async (req, res) => {
     catch (err) {
         participantAvailable = false
     }
-    res.status(403).end(JSON.stringify(participantAvailable))
+    res.end(JSON.stringify(participantAvailable))
 }
 
 module.exports.participate_post = async (req, res) => {
