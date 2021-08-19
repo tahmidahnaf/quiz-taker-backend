@@ -36,15 +36,21 @@ module.exports.admin_post = async (req, res) => {
 }
 
 module.exports.check_participant = async (req, res) => {
+    let admin = await Quiz.findOne({"admin.name" : req.params.adminId , id : req.params.quizId}, { "id": 0 , "_id" : 0 , "__v" : 0 , "admin._id" : 0 , "participants" : 0 })
     let participants = await Quiz.findOne({ "admin.name": req.params.adminId, id : req.params.quizId , "participants.name": req.params.participant }, { "id": 0, "_id": 0, "__v": 0, "admin": 0 })
-    let participantAvailable
+    let response
     try {
-        participantAvailable = Boolean(Object.values(JSON.parse(JSON.stringify(participants)))[0].filter(participant => participant.name == req.params.participant)[0])
+        response = { participantAvailable: Boolean(Object.values(JSON.parse(JSON.stringify(participants)))[0].filter(participant => participant.name == req.params.participant)[0]), idAvailable: true}
     }
     catch (err) {
-        participantAvailable = false
+        if (admin) {
+            response = {participantAvailable : false , idAvailable : true}
+        }
+        else {
+            response = {participantAvailable : false , idAvailable : false}
+        }
     }
-    res.end(JSON.stringify(participantAvailable))
+    res.end(JSON.stringify(response))
 }
 
 module.exports.participate_post = async (req, res) => {
