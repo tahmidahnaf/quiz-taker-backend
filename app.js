@@ -1,6 +1,8 @@
 let express = require('express');
 let mongoose = require('mongoose');
 require('dotenv').config()
+let cors = require('cors');
+
 let adminRoute = require('./routes/admin');
 let participateRoute = require('./routes/participant');
 let resultRoute = require('./routes/result');
@@ -8,6 +10,7 @@ let resultRoute = require('./routes/result');
 let app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.use('/admin/', adminRoute)
 app.use('/participate/', participateRoute)

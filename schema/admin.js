@@ -17,6 +17,7 @@ let idChildren = mongoose.Schema({
 })
 
 let schema = mongoose.Schema({
+    quizName : String,
     id: {type : String , index: true},
     admin: idChildren,
     participants: [{
